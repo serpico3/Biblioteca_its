@@ -1,3 +1,4 @@
+
 #funzione per la creazione dell'utente, chiede nome e cognome mentre invece crea in automatico una lista di libri in prestito inizialmemte vuota
 def aggiungiUtente():
     nome = input("Inserisci il tuo nome: ")
@@ -18,10 +19,8 @@ def eliminaUtente(listaUtenti):
     # Itera dalla fine all'inizio della lista per evitare problemi durante l'eliminazione degli elementi
     for x in range(len(listaUtenti) - 1, -1, -1):
         #controlla che l'utente da eliminare esista e se esiste lo elimina
-        if listaLibri[x]['nome'] == nome_Utente and listaLibri[x]['cognome'] == cognome_Utente:
-            del listaLibri[x]
-        else:
-            print("Utente non trovato")
+        if listaUtenti[x]['nome'] == nome_Utente and listaUtenti[x]['cognome'] == cognome_Utente:
+            del listaUtenti[x]
     return 0
 
 def eliminaLibro(listaLibri):
@@ -32,8 +31,6 @@ def eliminaLibro(listaLibri):
         #controlla che il libro da eliminare esista e se esiste lo elimina
         if listaLibri[x]['nome'] == nome_libro:
             del listaLibri[x]
-        else:
-            print("Libro non trovato")
     return 0
 
 #un utente è caratterizzato da nome e cognome, non abbiamo implementato sistemi per eliminare il problema dell'omonimia
@@ -45,8 +42,6 @@ def cercaUtente(listaUtenti):
         #controlla che l'utente da cercare esiste e se esiste lo mostra
         if listaUtenti[x]['nome'] == nome_Utente and listaUtenti[x]['cognome'] == cognome_Utente:
             print(listaUtenti[x])
-        else:
-            print("Utente non trovato")
     return
 
 #identifichiamo i libri unicamente dal nome, non abbiamo implementato un sistema che permetta di avere più libri uguali
@@ -57,8 +52,6 @@ def cercaLibro(listaLibri):
         #controlla se il libro richiesto esiste e se esiste lo mostra
         if listaLibri[x]['nome'] == nome_libro:
             print(listaLibri[x])
-        else:
-            print("Libro non trovato")
     return
 
 def prestitoLibro(listaUtenti, listaLibri):
@@ -80,10 +73,6 @@ def prestitoLibro(listaUtenti, listaLibri):
                     else:
                         listaLibri[y]['prestato'] = True
                         listaUtenti[x]['prestiti'].append(libro)
-                else:
-                    print("Libro non trovato")
-        else:
-            print("Utente non trovato")
     return
 
 def restituzioneLibro(ListaUtenti, ListaLibri):
@@ -105,8 +94,10 @@ def restituzioneLibro(ListaUtenti, ListaLibri):
                     else:
                         ListaLibri[y]['prestato'] = False
                         ListaUtenti[x]['prestiti'].remove(libro)
-                else:
-                    print("Libro non trovato")
-        else:
-            print("Utente non trovato")
     return
+
+def stampaListe(lista):
+    for dizionario in lista:
+        for chiave, valore in dizionario.items():
+            print(f"{chiave}: {valore}")
+        print()
